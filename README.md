@@ -150,6 +150,39 @@ Now that we have Nginx Proxy Manager up and running, we need to forward all traf
 - https://www.addictedtotech.net/nginx-proxy-manager-tutorial-raspberry-pi-4/
 
 ## Cloudflare & SSL ##
+Cloudflare is my DNS service of choice, the free option adds a lot of security tools that can protect you and your now web hosted apps from people that wish to do harm. There are some key things that must be done in order for this to all work, so this might be the most important part of the guide.
+
+### Getting A Domain ###
+In order to self host, you're going to need a domain name so you can hide your public IP behind Cloudflare. [Freenom](https://www.freenom.com/en/index.html?lang=en) can provide you a free domain name of your choice, if it is avilable. The steps to getting it are simple enough and privded in the video. Thing to note Cloudflare now allows you to purchase Domain Names form them which is neat, and they are pretty cheap.
+
+Once you have your domain name, you will need to change the name servers to the ones you get in your [Cloudflare](https://dash.cloudflare.com/login) account which you setup after adding your website.
+- DNS Tab, scroll down
+- ![image](https://user-images.githubusercontent.com/70184841/153463749-fd0db05f-d71c-4bf2-a019-c2c73f2c9a5c.png)
+- Copy these name servers over the ones at the site you got your domain name from.
+
+### A and CName Records ###
+In the DNS tab of Cloudflare you will need to make a new A record, this will point the domain you have setup to your Public IP. Make sure it is Proxied as well.
+![image](https://user-images.githubusercontent.com/70184841/153464511-0e8e362e-016c-4603-8b1c-1375c5bc3a9d.png)
+Once you have the A record, we now need to make a subdomain CName Record for foundry itself. 
+![image](https://user-images.githubusercontent.com/70184841/153464743-16c991cf-f00c-48b5-962c-985c2f772868.png)
+- Note: This can be done as many times as you want, for as many different services or containers you are hosting.
+
+### Security Settings ###
+Now that Cloudflare is forwarding all traffic for your domain name to your public IP, we have to make sure the security settings are in place. Go to the SSL/TLS tab, and in the overview settins you will need to change to either Full or Full(Strict). Keep in mind that the Strict setting might slow down your instance just a little bit. Anything less most likely won't allow connections to your foundry.
+
+![image](https://user-images.githubusercontent.com/70184841/153465509-4586159c-21b9-4d4a-9394-ee9a8abd8dc1.png)
+
+### Creating An SSL Cert For Nginx ###
+While we are in Cloudflare, lets go ahead and create our own certificate for SSL instead of using one from Let's Encrypt. These certs last for longer than Let's Encrypt. 
+- In the SSL/TLS go to "Client Certificate" and click on "Create Certificate".
+- <img width="914" alt="image" src="https://user-images.githubusercontent.com/70184841/153466762-39c0dcfe-d6e4-425c-8926-bdb0ca9e0993.png">
+- The next page we only really need to change the leangth, everything else meets our needs.
+- Now we need to make 2 notepad files, copy and paste the contents of the boxes you see, and name them Certificate.com.pem (Certificate Text Box) and PrivateKey.com.key (Private Key Text Box)
+- ![image](https://user-images.githubusercontent.com/70184841/153467135-8c7cfc44-6574-4886-b9c4-2e3b3c30ea2b.png)
+- These files we will upload to Nginx Proxy Manager in the SSL tab so that we can use our cert for any services we create.
+
+
+
 
 ## Foundry VTT ##
 
