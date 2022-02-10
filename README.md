@@ -183,9 +183,53 @@ While we are in Cloudflare, lets go ahead and create our own certificate for SSL
 
 - These files we will upload to Nginx Proxy Manager in the SSL tab so that we can use our cert for any services we create.
 
+### Nginx SSL Cert Upload ###
+Once you have your cert files download, head to your Nginx Proxy Manager, go the the SSL Certificates page, and create a new custom SSL Certificate.
 
+![image](https://user-images.githubusercontent.com/70184841/153481708-ecbfa177-1190-4771-9f9c-dc65c099cefa.png)
 
+Name your cert whatever, this is for Nginx only, and upload the appropriate files using the browse button.
+
+![image](https://user-images.githubusercontent.com/70184841/153482040-b99fe35a-1a11-4628-ab4c-2b5e80a63d9d.png)
+
+Now you should have an SSL cert for all of your subdomains to use through Nginx!
 
 ## Foundry VTT ##
+Finally, lets get FoundryVTT setup and ready to run! We are going to make another docker-compose.yml, which you should make a foundry folder for so you don't lose it.
+- sudo nano docker-compose.yml
+- Place the following data into the newly created .yml, replacing all placeholder information with your own. The volumes > source is where you want your data to be on the raspberry pi, something like the following: /home/pi/foundry
+```
+---
+version: "3.8"
+
+services:
+  foundry:
+    image: felddy/foundryvtt:release
+    hostname: my_foundry_host
+    init: true
+    restart: "unless-stopped"
+    volumes:
+      - type: bind
+        source: <your_data_dir>
+        target: /data
+    environment:
+      - FOUNDRY_PASSWORD=<your_password>
+      - FOUNDRY_USERNAME=<your_username>
+      - FOUNDRY_ADMIN_KEY=atropos
+    ports:
+      - target: 30000
+        published: 30000
+        protocol: tcp
+   ```
+   - If you need help figuring out what to add to the .yml, go to the creates [Github](https://github.com/felddy/foundryvtt-docker)
+   - Once the .yml is created, lets start it up: docker-compose up -d --force-recreate
+
+### Basic Troubleshooting ###
+Make sure that your Linux version is 11 or later if you use the latest FoundryVTT image, otherwise it won't work. If you have Linux 10 or less, you will need this image:
+- felddy/foundryvtt:0.8.9
+
+Foundry username and password are for the website where you bought your key to install foundry.
+
+### Foundry VTT Image REference ###
 
 https://github.com/felddy/foundryvtt-docker
