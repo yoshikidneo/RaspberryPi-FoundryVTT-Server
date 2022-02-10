@@ -175,10 +175,10 @@ Now that Cloudflare is forwarding all traffic for your domain name to your publi
 ### Creating An SSL Cert For Nginx ###
 While we are in Cloudflare, lets go ahead and create our own certificate for SSL instead of using one from Let's Encrypt. These certs last for longer than Let's Encrypt. 
 - In the SSL/TLS go to "Client Certificate" and click on "Create Certificate".
-- <img width="914" alt="image" src="https://user-images.githubusercontent.com/70184841/153466762-39c0dcfe-d6e4-425c-8926-bdb0ca9e0993.png">
+<img width="914" alt="image" src="https://user-images.githubusercontent.com/70184841/153466762-39c0dcfe-d6e4-425c-8926-bdb0ca9e0993.png">
 - The next page we only really need to change the leangth, everything else meets our needs.
 - Now we need to make 2 notepad files, copy and paste the contents of the boxes you see, and name them Certificate.com.pem (Certificate Text Box) and PrivateKey.com.key (Private Key Text Box)
-- ![image](https://user-images.githubusercontent.com/70184841/153467135-8c7cfc44-6574-4886-b9c4-2e3b3c30ea2b.png)
+![image](https://user-images.githubusercontent.com/70184841/153467135-8c7cfc44-6574-4886-b9c4-2e3b3c30ea2b.png)
 - These files we will upload to Nginx Proxy Manager in the SSL tab so that we can use our cert for any services we create.
 
 
