@@ -5,6 +5,7 @@ This is the step by step for my video, with links to other videos, hopefully thi
 
 ## Raspberry Pi Setup ##
 First things first, setup your Raspberry Pi with any OS you wish, I was using Twister OS but have switched to the latest Raspbein 32bit since it is running on Linux 11, which is necessary for FoundryVTT v9 or later. 
+Rasbian OS has officially launched the 64bit version which allows you to utilize more than 4gb RAM, commands should be pretty much the same although I haven’t tried it myself.
 - [Raspberry Pi Install and Inital Setup](https://www.youtube.com/watch?v=BpJCAafw2qE)
 - [Booting from SSD or Thumbdrive](https://www.youtube.com/watch?v=r27WcPRtpWM)
 
