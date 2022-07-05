@@ -234,3 +234,14 @@ Foundry username and password are for the website where you bought your key to i
 ### Foundry VTT Image REference ###
 
 https://github.com/felddy/foundryvtt-docker
+
+### Port-Forwading Workaround ###
+
+DB Tech released a video a few months ago on how to use Cloudflare Tunnels to add more security to your self-hosting needs. I've started to implement it myself to test some things, and the neat part is it gets rid of the port forwarding requirement for Nginx and your router.
+
+This not only allows you to protect your network and give you that ease of mind, but now for those of you that live in locations where you can't port forward, like a dorm or apartment with shared Wifi, you can use Cloudflare Tunnels and still self host! Really neat how it all works, so far I haven't found any issues with how my videos  go through the process, but I will make a new video sometime soon to go through a new installation process utilizing this method.
+
+Link to the video:
+https://www.youtube.com/watch?v=VrV0udRUi8A
+
+I'll go through and screenshot the steps in the coming days and update this portion accordingly.
