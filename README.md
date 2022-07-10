@@ -149,7 +149,25 @@ You can then go into Configure for the tunnel, Public Hostnames, and see your li
 
 ![image](https://user-images.githubusercontent.com/70184841/178129481-28892cd0-dd88-4573-923d-0496296c12ad.png)
 
+### Application Secuirty (OPTIONAL)###
 
+If you want to add those Access Lists I was atalking about, go to the "Access" tab and then "Applications" and click "Add an application".
+
+![image](https://user-images.githubusercontent.com/70184841/178129540-10cc10ef-aa60-4d4f-b79a-3c0df1fdfe05.png)
+
+Click on "Self Hosted"
+
+![image](https://user-images.githubusercontent.com/70184841/178129558-9c487dbf-7633-416b-839f-910a2a805216.png)
+
+Add in the information as needed, you can also edit the logo of the app for the Cloudflare Dashboard if you want, as well as add additional authentication paths in the future if you'd like. Otherwise the "One-Time Password" should already be selected.
+
+![image](https://user-images.githubusercontent.com/70184841/178129576-e6715b94-f925-40fc-a8e1-1f212ced0c9f.png)
+
+Now you will create a name for the policy, and torwards the bottom you can change the people that are allowed. If you use emails, make sure you get all the emails of the players and your own included in the values box. Any email that is not in that box will never get a one-time code.
+
+![image](https://user-images.githubusercontent.com/70184841/178129661-280312c0-8edc-4291-a081-e46d53c98e57.png)
+
+That's a pretty basic ACL, go ahead and tinker with it and add additional checks or methods of authentication as you see fit!
 
 ## Old Way ##
 ### Nginx Proxy Manager ###
