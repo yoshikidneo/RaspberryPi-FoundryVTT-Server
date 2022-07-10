@@ -68,7 +68,52 @@ Create a new user, and make sure you select Docker for the environment that Port
 ### Portainer Install Reference ###
 - https://pimylifeup.com/raspberry-pi-portainer/
 
-## Nginx Proxy Manager ##
+## Foundry VTT ##
+Finally, lets get FoundryVTT setup and ready to run! We are going to make another docker-compose.yml, which you should make a foundry folder for so you don't lose it.
+- sudo nano docker-compose.yml
+- Place the following data into the newly created .yml, replacing all placeholder information with your own. The volumes > source is where you want your data to be on the raspberry pi, something like the following: /home/pi/foundry
+```
+---
+version: "3.8"
+
+services:
+  foundry:
+    image: felddy/foundryvtt:release
+    hostname: my_foundry_host
+    init: true
+    restart: "unless-stopped"
+    volumes:
+      - type: bind
+        source: <your_data_dir>
+        target: /data
+    environment:
+      - FOUNDRY_PASSWORD=<your_password>
+      - FOUNDRY_USERNAME=<your_username>
+      - FOUNDRY_ADMIN_KEY=atropos
+    ports:
+      - target: 30000
+        published: 30000
+        protocol: tcp
+   ```
+   - If you need help figuring out what to add to the .yml, go to the creates [Github](https://github.com/felddy/foundryvtt-docker)
+   - Once the .yml is created, lets start it up: docker-compose up -d --force-recreate
+
+### Basic Troubleshooting ###
+Make sure that your Linux version is 11 or later if you use the latest FoundryVTT image, otherwise it won't work. If you have Linux 10 or less, you will need this image:
+- felddy/foundryvtt:0.8.9
+
+Foundry username and password are for the website where you bought your key to install foundry.
+
+### Foundry VTT Image REference ###
+
+https://github.com/felddy/foundryvtt-docker
+
+## Cloudflare Tunnels ##
+
+#Test#
+
+## Old Way ##
+### Nginx Proxy Manager ###
 Nginx Proxy Manager is a reverse proxy that allows us to only expose 2 ports on our modem/router instead of a bunch. In terms of security, you want as few ports forwarded on your modem/router since those forwarded ports allow all traffic regaurdless of its origin.
 
 First lets make a folder to store all of the necessary files for this, you can place it in any directory, just keep in mind that this setup will place it in the /home/pi directory, pi being the current user running.
@@ -195,45 +240,6 @@ Name your cert whatever, this is for Nginx only, and upload the appropriate file
 
 Now you should have an SSL cert for all of your subdomains to use through Nginx!
 
-## Foundry VTT ##
-Finally, lets get FoundryVTT setup and ready to run! We are going to make another docker-compose.yml, which you should make a foundry folder for so you don't lose it.
-- sudo nano docker-compose.yml
-- Place the following data into the newly created .yml, replacing all placeholder information with your own. The volumes > source is where you want your data to be on the raspberry pi, something like the following: /home/pi/foundry
-```
----
-version: "3.8"
-
-services:
-  foundry:
-    image: felddy/foundryvtt:release
-    hostname: my_foundry_host
-    init: true
-    restart: "unless-stopped"
-    volumes:
-      - type: bind
-        source: <your_data_dir>
-        target: /data
-    environment:
-      - FOUNDRY_PASSWORD=<your_password>
-      - FOUNDRY_USERNAME=<your_username>
-      - FOUNDRY_ADMIN_KEY=atropos
-    ports:
-      - target: 30000
-        published: 30000
-        protocol: tcp
-   ```
-   - If you need help figuring out what to add to the .yml, go to the creates [Github](https://github.com/felddy/foundryvtt-docker)
-   - Once the .yml is created, lets start it up: docker-compose up -d --force-recreate
-
-### Basic Troubleshooting ###
-Make sure that your Linux version is 11 or later if you use the latest FoundryVTT image, otherwise it won't work. If you have Linux 10 or less, you will need this image:
-- felddy/foundryvtt:0.8.9
-
-Foundry username and password are for the website where you bought your key to install foundry.
-
-### Foundry VTT Image REference ###
-
-https://github.com/felddy/foundryvtt-docker
 
 ## Port-Forwading Workaround ##
 
