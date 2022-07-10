@@ -119,26 +119,34 @@ Once you have your domain name, you will need to change the name servers to the 
 - Copy these name servers over the ones at the site you got your domain name from.
 
 ### Creating The Tunnel ###
-Once the name servers have propogated and your website is in "Active Status" you''ll need to go to the "Access" tab and click on "Launch Zero Trust" ![image](https://user-images.githubusercontent.com/70184841/178129284-8b710f10-9e96-4a93-9397-b42bfc75e19b.png)
+Once the name servers have propogated and your website is in "Active Status" you''ll need to go to the "Access" tab and click on "Launch Zero Trust"
+
+![image](https://user-images.githubusercontent.com/70184841/178129284-8b710f10-9e96-4a93-9397-b42bfc75e19b.png)
 
 Now go to the "Access" tab again, and click "Tunnels"
+
 ![image](https://user-images.githubusercontent.com/70184841/178129303-cd20420e-1996-40ee-ad23-cff2f8079ca6.png)
 
 Create a new tunnel
+
 ![image](https://user-images.githubusercontent.com/70184841/178129315-340d1fa4-a151-4171-af80-0a079208ca2f.png)
  
  Name your tunnel and save it, then you'll select an installer. Since we are using a Raspberry Pi in this tutorial and have the 64-bit OS installed, we choose "Debian > arm64-bit" but you can use whatever you want. The docker image didn't work with arm processors at the time of this recording just FYI!
+ 
  ![image](https://user-images.githubusercontent.com/70184841/178129370-2a36bfd0-9b1b-4728-a2ce-6d263d851b5a.png)
  
  All you have to do is copy and paste the box into your Raspberry Pi, it will begin the install of the tunnel and run it at the end.
 
 Next you will be creating the subdomain if you want, select your domain name from the drop down, select HTTP, input the local network address of the Raspberry Pi, and click Save.
+
 ![image](https://user-images.githubusercontent.com/70184841/178129421-1b366d38-b335-4616-bde7-5524f1b6d03a.png)
 
 You should get the tunnel up and running at this point and see the "Active" status.
+
 ![image](https://user-images.githubusercontent.com/70184841/178129454-1cf97b76-70cf-4b3c-b471-f9091ea4bda4.png)
 
 You can then go into Configure for the tunnel, Public Hostnames, and see your link for the new domain of foundry you just created!
+
 ![image](https://user-images.githubusercontent.com/70184841/178129481-28892cd0-dd88-4573-923d-0496296c12ad.png)
 
 
